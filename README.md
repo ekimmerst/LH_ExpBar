@@ -4,6 +4,7 @@ Minimale Erfahrungsleiste für WoW Forever Beta (Interface 16001).
 
 - Startposition direkt unter der Minimap; die Breite passt sich deren Größe und Skalierung an.
 - Schwarzer Hintergrund, goldene Erfahrung, hellblaue Erholungs-Erfahrung, Smooth-Textur und dünner Blizzard-Rahmen.
+- Neue Erfahrung wird für 0,6 Sekunden hellgold hervorgehoben, während die goldene Füllung weich nachzieht. Beim Laden und beim Levelwechsel wird der Stand direkt gesetzt.
 - Mittig steht die aktuelle Erfahrung in Prozent des nächsten Levels, bei Erholungs-Erfahrung ergänzt um `(+ 15%)`. Der Vorrat kann über 100 % liegen; der sichtbare Abschnitt endet am Leistenrand.
 - Mit gedrückter linker Maustaste ziehen. Die Position wird pro Charakter gespeichert.
 - `/miniexpbar reset` setzt die Position zurück.

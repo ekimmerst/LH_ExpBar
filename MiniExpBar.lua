@@ -1,8 +1,33 @@
 local ADDON_NAME = ...
 local TEXTURE = "Interface\\AddOns\\MiniExpBar\\Media\\Smooth.tga"
 local HEIGHT, INSET = 20, 3
-local bar, experience, rested, label
+local bar, experience, rested, gain, label
 local initialized = false
+local lastXP, lastMaximum, lastLevel
+local animation
+local ANIMATION_DURATION = 0.6
+
+local function StopAnimation(current)
+    animation = nil
+    experience:SetScript("OnUpdate", nil)
+    gain:Hide()
+    if current then experience:SetValue(current) end
+end
+
+local function AnimateExperience(current)
+    local displayed = experience:GetValue()
+    gain:SetValue(current)
+    gain:Show()
+    animation = { from = displayed, target = current, elapsed = 0 }
+    experience:SetScript("OnUpdate", function(self, elapsed)
+        animation.elapsed = animation.elapsed + elapsed
+        local progress = math.min(animation.elapsed / ANIMATION_DURATION, 1)
+        -- Ease out as the normal gold fill catches the highlighted gain.
+        local eased = 1 - (1 - progress) ^ 3
+        self:SetValue(animation.from + (animation.target - animation.from) * eased)
+        if progress >= 1 then StopAnimation(animation.target) end
+    end)
+end
 
 local function UpdateWidth()
     if not bar or not Minimap then return end
@@ -36,15 +61,26 @@ local function UpdateExperience()
     local maximum = UnitXPMax("player") or 0
     local current = UnitXP("player") or 0
     local bonus = GetXPExhaustion() or 0
+    local level = UnitLevel("player")
     local capped = GetMaxPlayerLevel and UnitLevel("player") >= GetMaxPlayerLevel()
     if maximum <= 0 or capped then
+        StopAnimation()
+        lastXP, lastMaximum, lastLevel = nil, nil, nil
         bar:Hide()
         return
     end
     current = math.min(math.max(current, 0), maximum)
     bonus = math.max(bonus, 0)
     experience:SetMinMaxValues(0, maximum)
-    experience:SetValue(current)
+    gain:SetMinMaxValues(0, maximum)
+    if lastXP and lastMaximum == maximum and lastLevel == level and current > lastXP then
+        AnimateExperience(current)
+    elseif not lastXP or lastMaximum ~= maximum or lastLevel ~= level or current < lastXP then
+        StopAnimation(current)
+    elseif not animation then
+        experience:SetValue(current)
+    end
+    lastXP, lastMaximum, lastLevel = current, maximum, level
     -- Gold covers the rested fill up to current XP, leaving just the bonus segment.
     rested:SetMinMaxValues(0, maximum)
     rested:SetValue(math.min(current + bonus, maximum))
@@ -83,16 +119,24 @@ local function CreateBar()
     rested:SetFrameLevel(bar:GetFrameLevel() + 1)
     rested:EnableMouse(false)
 
+    gain = CreateFrame("StatusBar", nil, bar)
+    gain:SetAllPoints(rested)
+    gain:SetStatusBarTexture(TEXTURE)
+    gain:SetStatusBarColor(1, 0.95, 0.55, 1)
+    gain:SetFrameLevel(bar:GetFrameLevel() + 2)
+    gain:EnableMouse(false)
+    gain:Hide()
+
     experience = CreateFrame("StatusBar", nil, bar)
     experience:SetAllPoints(rested)
     experience:SetStatusBarTexture(TEXTURE)
     experience:SetStatusBarColor(1, 0.75, 0.15, 1)
-    experience:SetFrameLevel(bar:GetFrameLevel() + 2)
+    experience:SetFrameLevel(bar:GetFrameLevel() + 3)
     experience:EnableMouse(false)
 
     local textFrame = CreateFrame("Frame", nil, bar)
     textFrame:SetAllPoints(bar)
-    textFrame:SetFrameLevel(bar:GetFrameLevel() + 3)
+    textFrame:SetFrameLevel(bar:GetFrameLevel() + 4)
     textFrame:EnableMouse(false)
     label = textFrame:CreateFontString(nil, "OVERLAY")
     label:SetPoint("CENTER")
@@ -106,7 +150,10 @@ local function CreateBar()
         self:StopMovingOrSizing()
         SavePosition()
     end)
-    bar:SetScript("OnHide", function(self) self:StopMovingOrSizing() end)
+    bar:SetScript("OnHide", function(self)
+        self:StopMovingOrSizing()
+        StopAnimation(lastXP)
+    end)
     initialized = true
     UpdateWidth()
     RestorePosition()

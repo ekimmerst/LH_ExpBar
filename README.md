@@ -1,23 +1,38 @@
 # MiniExpBar
 
-Minimal experience bar for WoW Forever Beta (Interface 16001).
+Keep your next level in sight without cluttering your screen. MiniExpBar adds a compact experience bar beneath your minimap, showing your leveling progress and rested XP at a glance.
 
-- Starts directly below the minimap; its width adjusts to the minimap's size and scale.
-- Black background, gold XP, light blue rested XP, a Smooth texture, and a thin Blizzard border.
-- Newly gained XP is highlighted in light gold for 0.6 seconds while the gold fill smoothly catches up. On loading and leveling up, the value is set immediately.
-- The centered label shows current XP as a percentage of the XP required for the next level, with rested XP added as `(+ 15%)`. Rested XP can exceed 100%; the visible segment stops at the edge of the bar.
-- Hold the left mouse button and drag to move the bar. Its position is saved per character.
-- `/miniexpbar reset` resets the position.
-- The bar is hidden at maximum level.
+Made for WoW Forever Beta, it works as soon as you enable it. No setup or additional addons are needed.
 
-Restart WoW so the new addon is detected, then enable MiniExpBar in the addon list.
+## Features
 
-The bundled Smooth texture comes from the existing TidyPlates_ThreatPlates installation (`Artwork/Smooth.tga`, registered there as `Smooth`). No other addons are required at runtime.
+- **Easy-to-read progress:** A gold bar and centered percentage show how far you are toward your next level.
+- **Rested XP at a glance:** A light blue section shows your rested bonus, with its percentage displayed beside your progress.
+- **Smooth XP gains:** Newly earned experience briefly lights up as the bar fills.
+- **A compact look:** A dark background and subtle border fit neatly beneath the minimap. The bar automatically matches the minimap's width.
+- **Place it where you like:** Move the bar anywhere on your screen. Each character remembers their own position.
+- **Hidden at max level:** The bar disappears automatically when you reach the level cap.
 
-## Addon icon
+## How to use
 
-The addon list uses `Media/Icon.tga` (256 × 256 pixels, uncompressed RGBA). The high-resolution source image is stored in `Media/Icon.png`. Restart WoW after adding the icon.
+The bar appears below your minimap by default and updates as you earn experience.
 
-Created with the built-in Imagegen tool. Generation prompt:
+For example, `45% (+ 15%)` means you are 45% of the way to your next level and have a rested XP bonus equal to 15% of a full level.
 
-> Use case: logo-brand. Create a square World of Warcraft-style fantasy addon icon. Exact text: "mXP" (lowercase m, uppercase X and P), one centered line, very large readable lettering filling most of the square. Heavy ornate fantasy serif letters, beveled burnished gold, warm highlights, dark outline. Deep midnight blue textured background, restrained thin antique gold square frame. High contrast, readable at 32x32 pixels. No other text, no extra symbols, no watermark. Flat front-facing icon, not a mockup.
+To move the bar, hold the **left mouse button** on it and drag it to your preferred spot.
+
+To return it to its default position beneath the minimap, type:
+
+```text
+/miniexpbar reset
+```
+
+## Installation
+
+1. Place the `MiniExpBar` folder in your game's `Interface/AddOns` folder.
+2. Restart the game.
+3. Enable **MiniExpBar** in the addon list on the character selection screen.
+
+## Credits
+
+The bundled Smooth bar texture comes from TidyPlates_ThreatPlates.

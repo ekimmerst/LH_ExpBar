@@ -200,6 +200,6 @@ SlashCmdList.MINIEXPBAR = function(message)
         UpdateWidth()
         UpdateExperience()
     else
-        print("MiniExpBar: /miniexpbar reset - Position unter der Minimap wiederherstellen. Zum Verschieben linke Maustaste gedrückt halten.")
+        print("MiniExpBar: /miniexpbar reset - Restore the position below the minimap. Hold the left mouse button and drag to move the bar.")
     end
 end

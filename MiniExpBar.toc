@@ -2,7 +2,7 @@
 ## Title: MiniExpBar
 ## IconTexture: Interface\AddOns\MiniExpBar\Media\Icon.tga
 ## Notes: Minimal experience bar with rested XP, matching the minimap width.
-## Notes-deDE: Minimale, verschiebbare Erfahrungsleiste mit Erholungs-Erfahrung.
+## Notes-deDE: Minimal experience bar with rested XP, matching the minimap width.
 ## Author: MiniExpBar
 ## Version: 1.0.0
 ## SavedVariablesPerCharacter: MiniExpBarDB

@@ -4,7 +4,7 @@ Version: 1.0.1
 
 Keep your next level in sight without cluttering your screen. LH_ExpBar adds a compact experience bar beneath your minimap, showing your leveling progress and rested XP at a glance.
 
-Made for WoW Forever Beta, it works as soon as you enable it. No setup or additional addons are needed.
+Made for WoW Forever Beta, it works as soon as you enable it. No setup is needed beyond installing the required LH_Tweaks core.
 
 ## Features
 
@@ -52,3 +52,7 @@ The bundled Smooth bar texture comes from TidyPlates_ThreatPlates.
 - Renamed MiniExpBar to LH_ExpBar, including the addon folder, Lua/TOC files, metadata, icon and texture paths, frame name, chat messages and documentation.
 - Changed the reset command to `/lh_expbar reset` and the per-character settings table to `LH_ExpBarDB`.
 - Added instructions for transferring the saved position from the previous addon name.
+
+## Required core addon
+
+Install and enable **LH_Tweaks** alongside this addon. LH_Tweaks is the shared LiteHawk configuration host and must load first. CurseForge releases must list LH_Tweaks as a required dependency so the client installs it automatically.

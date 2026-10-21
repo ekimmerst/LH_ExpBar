@@ -33,7 +33,7 @@ To move or resize it, use the native **Unlock the experience bar** checkbox, or 
 
 Left-drag the bar to move it. Left-drag the small circle below the right edge to change width horizontally and height vertically. Use `/lh_expbar lock` or disable the checkbox to lock it again and hide the circle.
 
-The native options also provide **Bar width** and **Bar height** sliders and **Reset layout**. `/lh_expbar reset` restores the default dimensions and position beneath the minimap while preserving the lock setting. Blizzard's **Defaults** for this category additionally locks the bar; the game-wide Defaults action resets it too. All settings use the existing per-character `LH_ExpBarDB` table. With the default position, the bar stays anchored below the minimap until you actually move or resize it.
+The native options also provide **Bar width** and **Bar height** sliders and **Reset layout**. `/lh_expbar reset` restores the default dimensions and position, 10 pixels below the coordinates display under the minimap (`MinimapCluster.MinimapContainer.PlayerCoords`, or the minimap if it is missing) while preserving the lock setting. Blizzard's **Defaults** for this category additionally locks the bar; the game-wide Defaults action resets it too. All settings use the existing per-character `LH_ExpBarDB` table. With the default position, the bar stays anchored below the minimap until you actually move or resize it.
 
 ## Installation
 

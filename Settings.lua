@@ -42,7 +42,7 @@ local function Build(category, layout)
     end
     layout:AddInitializer(CreateSettingsButtonInitializer("Restore the default size and position", "Reset layout",
         function() Command("reset") end,
-        "Restore minimap width, 20 UI units of height and the position below the minimap. Keep the current lock setting.", true))
+        "Restore minimap width, 20 UI units of height and the position below the minimap coordinates. Keep the current lock setting.", true))
     EventRegistry:RegisterCallback("Settings.CategoryDefaulted", function(_, selected)
         if selected == category then Defaults() end
     end, Addon)

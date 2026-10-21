@@ -42,13 +42,20 @@ local function UpdateSize()
     bar:SetSize(math.max(70, StandardWidth() * LH_ExpBarDB.widthFactor), HEIGHT * LH_ExpBarDB.heightFactor)
 end
 
+local function DefaultAnchor()
+    -- The coordinate display may be created after this addon loads; fall back to the minimap.
+    local cluster = MinimapCluster
+    local container = cluster and cluster.MinimapContainer
+    return container and container.PlayerCoords or Minimap or UIParent
+end
+
 local function RestorePosition()
     bar:ClearAllPoints()
     local position = LH_ExpBarDB.position
     if type(position) == "table" and type(position.x) == "number" and type(position.y) == "number" then
         bar:SetPoint("CENTER", UIParent, "BOTTOMLEFT", position.x, position.y)
     else
-        bar:SetPoint("TOP", Minimap or UIParent, "BOTTOM", 0, -8)
+        bar:SetPoint("TOP", DefaultAnchor(), "BOTTOM", 0, -10)
     end
 end
 
@@ -258,6 +265,7 @@ events:SetScript("OnEvent", function(_, event, unit)
         return
     end
     if not initialized or (event == "PLAYER_XP_UPDATE" and unit and unit ~= "player") then return end
+    if event == "PLAYER_ENTERING_WORLD" and type(LH_ExpBarDB.position) ~= "table" then RestorePosition() end
     UpdateSize()
     UpdateExperience()
     -- XP can update after the level-up event itself.

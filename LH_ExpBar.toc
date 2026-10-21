@@ -1,10 +1,10 @@
 ## Interface: 16001
-## Title: MiniExpBar
-## IconTexture: Interface\AddOns\MiniExpBar\Media\Icon.tga
+## Title: LH_ExpBar
+## IconTexture: Interface\AddOns\LH_ExpBar\Media\Icon.tga
 ## Notes: Minimal experience bar with rested XP, matching the minimap width.
 ## Notes-deDE: Minimal experience bar with rested XP, matching the minimap width.
-## Author: MiniExpBar
-## Version: 1.0.0
-## SavedVariablesPerCharacter: MiniExpBarDB
+## Author: LH_ExpBar
+## Version: 1.0.1
+## SavedVariablesPerCharacter: LH_ExpBarDB
 
-MiniExpBar.lua
+LH_ExpBar.lua

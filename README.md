@@ -1,6 +1,8 @@
-# MiniExpBar
+# LH_ExpBar
 
-Keep your next level in sight without cluttering your screen. MiniExpBar adds a compact experience bar beneath your minimap, showing your leveling progress and rested XP at a glance.
+Version: 1.0.1
+
+Keep your next level in sight without cluttering your screen. LH_ExpBar adds a compact experience bar beneath your minimap, showing your leveling progress and rested XP at a glance.
 
 Made for WoW Forever Beta, it works as soon as you enable it. No setup or additional addons are needed.
 
@@ -24,15 +26,29 @@ To move the bar, hold the **left mouse button** on it and drag it to your prefer
 To return it to its default position beneath the minimap, type:
 
 ```text
-/miniexpbar reset
+/lh_expbar reset
 ```
 
 ## Installation
 
-1. Place the `MiniExpBar` folder in your game's `Interface/AddOns` folder.
+1. Place the `LH_ExpBar` folder in your game's `Interface/AddOns` folder.
 2. Restart the game.
-3. Enable **MiniExpBar** in the addon list on the character selection screen.
+3. Enable **LH_ExpBar** in the addon list on the character selection screen.
+
+## Upgrading from MiniExpBar
+
+Replace the old addon folder with **LH_ExpBar** and restart WoW. The reset command is now `/lh_expbar reset`.
+
+To retain your saved position, close WoW and back up each character's `WTF/Account/<account>/<realm>/<character>/SavedVariables/MiniExpBar.lua` file. Copy it to `LH_ExpBar.lua` in the same SavedVariables folder, then change the table name `MiniExpBarDB` to `LH_ExpBarDB` inside the copy. Migrate before first using the renamed addon; do not overwrite an existing `LH_ExpBar.lua` containing settings you want to keep. Without migration, the bar starts at its default position beneath the minimap.
 
 ## Credits
 
 The bundled Smooth bar texture comes from TidyPlates_ThreatPlates.
+
+## Changelog
+
+### 1.0.1 - 2026-10-21
+
+- Renamed MiniExpBar to LH_ExpBar, including the addon folder, Lua/TOC files, metadata, icon and texture paths, frame name, chat messages and documentation.
+- Changed the reset command to `/lh_expbar reset` and the per-character settings table to `LH_ExpBarDB`.
+- Added instructions for transferring the saved position from the previous addon name.

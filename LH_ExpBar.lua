@@ -1,5 +1,5 @@
 local ADDON_NAME = ...
-local TEXTURE = "Interface\\AddOns\\MiniExpBar\\Media\\Smooth.tga"
+local TEXTURE = "Interface\\AddOns\\LH_ExpBar\\Media\\Smooth.tga"
 local HEIGHT, INSET = 20, 3
 local bar, experience, rested, gain, label
 local initialized = false
@@ -38,7 +38,7 @@ end
 
 local function RestorePosition()
     bar:ClearAllPoints()
-    local position = MiniExpBarDB.position
+    local position = LH_ExpBarDB.position
     if type(position) == "table" and type(position.x) == "number" and type(position.y) == "number" then
         bar:SetPoint("CENTER", UIParent, "BOTTOMLEFT", position.x, position.y)
     else
@@ -51,7 +51,7 @@ local function SavePosition()
     if not x or not y then return end
     local scale = bar:GetEffectiveScale() / UIParent:GetEffectiveScale()
     x, y = x * scale, y * scale
-    MiniExpBarDB.position = { x = x, y = y }
+    LH_ExpBarDB.position = { x = x, y = y }
     bar:ClearAllPoints()
     bar:SetPoint("CENTER", UIParent, "BOTTOMLEFT", x, y)
 end
@@ -94,8 +94,8 @@ local function UpdateExperience()
 end
 
 local function CreateBar()
-    MiniExpBarDB = type(MiniExpBarDB) == "table" and MiniExpBarDB or {}
-    bar = CreateFrame("Frame", "MiniExpBarFrame", UIParent, "BackdropTemplate")
+    LH_ExpBarDB = type(LH_ExpBarDB) == "table" and LH_ExpBarDB or {}
+    bar = CreateFrame("Frame", "LH_ExpBarFrame", UIParent, "BackdropTemplate")
     bar:SetSize(140, HEIGHT)
     bar:SetFrameStrata("MEDIUM")
     bar:SetMovable(true)
@@ -191,15 +191,15 @@ events:SetScript("OnUpdate", function(_, elapsed)
     end
 end)
 
-SLASH_MINIEXPBAR1 = "/miniexpbar"
-SlashCmdList.MINIEXPBAR = function(message)
+SLASH_LH_EXPBAR1 = "/lh_expbar"
+SlashCmdList.LH_EXPBAR = function(message)
     if not initialized then return end
     if (message or ""):lower():match("^%s*reset%s*$") then
-        MiniExpBarDB.position = nil
+        LH_ExpBarDB.position = nil
         RestorePosition()
         UpdateWidth()
         UpdateExperience()
     else
-        print("MiniExpBar: /miniexpbar reset - Restore the position below the minimap. Hold the left mouse button and drag to move the bar.")
+        print("LH_ExpBar: /lh_expbar reset - Restore the position below the minimap. Hold the left mouse button and drag to move the bar.")
     end
 end

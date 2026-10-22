@@ -94,6 +94,7 @@ local function ShowTooltip()
     local current, maximum, bonus = xpValues.current, xpValues.maximum, xpValues.bonus
     GameTooltip:SetOwner(bar, "ANCHOR_TOP")
     GameTooltip:SetText("LH ExpBar")
+    GameTooltip:AddLine(string.format("Level: %d", UnitLevel("player")), 1, 1, 1)
     GameTooltip:AddLine(string.format("Current XP: %s / %s (%.2f%%)",
         number(current), number(maximum), current / maximum * 100), 1, 0.82, 0)
     GameTooltip:AddLine(string.format("Rested XP: %s (%.2f%% of a level)",

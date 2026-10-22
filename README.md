@@ -1,5 +1,7 @@
 <h1 style="color: #d9a94b;">LH ExpBar</h1>
 
+<p>Show experience and rested XP in a minimal, movable bar that fits alongside the default WoW interface.</p>
+
 <p>A small experience bar that gives XP and rested XP a clear place in the default UI. Its starting width matches the minimap, so it feels like part of the interface rather than a new dashboard.</p>
 
 <h2 style="color: #73c9c4;">What it does</h2>

@@ -43,5 +43,13 @@
 
 <p><strong>LH Tweaks is required</strong> and must be installed alongside LH ExpBar. I built this for my own UI, but I'd be glad if it works for yours. Please leave feedback, problems or ideas in the CurseForge comments.</p>
 
+<h2 style="color: #73c9c4;">Changelog</h2>
+
+<p><strong>1.1.0 - Forever</strong></p>
+
+<ul>
+  <li>No gameplay changes in this Forever branch; the movable experience and rested XP bar remains available.</li>
+</ul>
+
 <hr>
-<p><sup>*</sup> Implemented with the help of Codex and GPT-6-SOL and tested by me as thoroughly as I could in the WoW beta client. If something does not work as expected, please report it.</p>
+<p><sup>*</sup> Implemented with the help of Codex and GPT-6-SOL. If something does not work as expected, please report it.</p>

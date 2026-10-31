@@ -19,14 +19,14 @@ local function Defaults()
 end
 
 local function Build(category, layout)
-    Header(layout, "Position and size")
-    local variable = "LH_ExpBar_unlocked"
+    Header(layout, "Positioning")
+    local variable = "LH_ExpBar_locked"
     variables[#variables + 1] = variable
-    local unlocked = Settings.RegisterProxySetting(category, variable, "boolean", "Unlock the experience bar", false,
-        function() return Addon:IsUnlocked() end,
-        function(value) Command(value and "unlock" or "lock") end)
-    Settings.CreateCheckbox(category, unlocked,
-        "Left-drag the bar to move it. Drag the small circle below its right edge to resize width and height. Disable to lock and show the XP tooltip on hover. A preview remains available at maximum level while unlocked. Saved per character.")
+    local locked = Settings.RegisterProxySetting(category, variable, "boolean", "Lock experience bar", true,
+        function() return not Addon:IsUnlocked() end,
+        function(value) Command(value and "lock" or "unlock") end)
+    Settings.CreateCheckbox(category, locked,
+        "Disable to drag the bar or resize it with the circle below its right edge. Enable to lock it and show the XP tooltip on hover. A preview remains available at maximum level while unlocked. Saved per character.")
     for _, option in ipairs({{key = "widthFactor", label = "Bar width"}, {key = "heightFactor", label = "Bar height"}}) do
         local key = option.key
         local name = "LH_ExpBar_" .. key

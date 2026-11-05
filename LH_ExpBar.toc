@@ -7,7 +7,7 @@
 ## Notes: Minimal experience bar with rested XP, matching the minimap width.
 ## Notes-deDE: Minimal experience bar with rested XP, matching the minimap width.
 ## Author: LH_ExpBar
-## Version: 1.1.0
+## Version: 1.2.0
 ## SavedVariablesPerCharacter: LH_ExpBarDB
 
 LH_ExpBar.lua

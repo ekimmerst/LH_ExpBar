@@ -159,6 +159,8 @@ local function CreateBar()
         local value = LH_ExpBarDB[key]
         LH_ExpBarDB[key] = type(value) == "number" and math.max(0.5, math.min(2, value)) or 1
     end
+    LH_LayoutProfiles:Register(ADDON_NAME, LH_ExpBarDB, LH_ExpBarDB,
+        {"position", "widthFactor", "heightFactor", "locked"})
     bar = CreateFrame("Frame", "LH_ExpBarFrame", UIParent, "BackdropTemplate")
     bar:SetSize(140, HEIGHT)
     bar:SetFrameStrata("MEDIUM")

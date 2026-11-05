@@ -16,6 +16,10 @@
 
 <p>Open <strong>Options → AddOns → LH Tweaks → LH ExpBar</strong>. Unlock the bar, drag it where you want it and resize it with the small handle below its right edge. You can also set width and height with sliders or restore the default layout.</p>
 
+<h2 style="color: #c78be6;">Settings profiles</h2>
+
+<p>Choose a character under <strong>Use settings from</strong> to share the bar position, width, height and lock state. Configure the source character and log out before selecting it elsewhere. LH Tweaks can apply its source to all LH addons. <strong>This character</strong> restores your own settings; experience values always come from the current character.</p>
+
 <h2 style="color: #73c9c4;">More LH addons</h2>
 
 <p>Choose only the pieces you want. Most companion addons require LH Tweaks; LH NameplateQuestInfo also works without it.</p>
@@ -44,6 +48,12 @@
 <p><strong>LH Tweaks is required</strong> and must be installed alongside LH ExpBar. I built this for my own UI, but I'd be glad if it works for yours. Please leave feedback, problems or ideas in the CurseForge comments.</p>
 
 <h2 style="color: #73c9c4;">Changelog</h2>
+
+<p><strong>1.2.0 - Forever and Retail</strong></p>
+
+<ul>
+  <li>Added character settings profiles for bar position, size and lock state while keeping experience data character-specific.</li>
+</ul>
 
 <p><strong>1.1.0 - Forever</strong></p>
 

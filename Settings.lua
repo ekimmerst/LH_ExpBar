@@ -16,10 +16,65 @@ end
 local function Defaults()
     Command("lock")
     Command("reset")
+    Addon:ResetQuestOptions()
+end
+
+local function ChooseQuestColor()
+    if not ColorPickerFrame and C_AddOns and C_AddOns.LoadAddOn then C_AddOns.LoadAddOn("Blizzard_ColorPicker") end
+    if not ColorPickerFrame and UIParentLoadAddOn then UIParentLoadAddOn("Blizzard_ColorPicker") end
+    if not ColorPickerFrame then return end
+    local r, g, b = Addon:GetQuestColor()
+    local function Changed()
+        Addon:SetQuestColor(ColorPickerFrame:GetColorRGB())
+    end
+    local function Cancelled()
+        Addon:SetQuestColor(r, g, b)
+    end
+    if ColorPickerFrame.SetupColorPickerAndShow then
+        ColorPickerFrame:SetupColorPickerAndShow({
+            r = r, g = g, b = b, hasOpacity = false,
+            swatchFunc = Changed, cancelFunc = Cancelled,
+        })
+    else
+        ColorPickerFrame.func = Changed
+        ColorPickerFrame.cancelFunc = Cancelled
+        ColorPickerFrame.opacityFunc = nil
+        ColorPickerFrame.hasOpacity = false
+        ColorPickerFrame.previousValues = { r = r, g = g, b = b }
+        if ColorPickerFrame.Content and ColorPickerFrame.Content.ColorPicker and ColorPickerFrame.Content.ColorPicker.SetColorRGB then
+            ColorPickerFrame.Content.ColorPicker:SetColorRGB(r, g, b)
+        elseif ColorPickerFrame.ColorPicker and ColorPickerFrame.ColorPicker.SetColorRGB then
+            ColorPickerFrame.ColorPicker:SetColorRGB(r, g, b)
+        elseif ColorPickerFrame.SetColorRGB then
+            ColorPickerFrame:SetColorRGB(r, g, b)
+        end
+        ColorPickerFrame:Show()
+    end
 end
 
 local function Build(category, layout)
     LH_LayoutProfiles:AddSetting(category, layout, addonName)
+    Header(layout, "Quest experience")
+    local showQuestXP = Settings.RegisterProxySetting(category, "LH_ExpBar_showQuestXP", "boolean", "Show completed quest XP", false,
+        function() return Addon:IsQuestXPShown() end,
+        function(value) Addon:SetQuestXPShown(value) end)
+    variables[#variables + 1] = "LH_ExpBar_showQuestXP"
+    Settings.CreateCheckbox(category, showQuestXP,
+        "Show the XP from completed quests still in your quest log as a colored segment after current XP. Saved per character.")
+    local questColor = Settings.RegisterProxySetting(category, "LH_ExpBar_questColor", "string", "Completed quest XP color", "ff8ce673",
+        function()
+            local r, g, b = Addon:GetQuestColor()
+            return CreateColor(r, g, b, 1):GenerateHexColor()
+        end,
+        function(value)
+            local color = CreateColorFromHexString(value)
+            Addon:SetQuestColor(color:GetRGB())
+        end)
+    variables[#variables + 1] = "LH_ExpBar_questColor"
+    Settings.CreateColorSwatch(category, questColor,
+        "Color of the completed quest XP segment. Saved per character.")
+    layout:AddInitializer(CreateSettingsButtonInitializer("Choose the completed quest XP color", "Choose color",
+        ChooseQuestColor, "Open the color picker for the completed quest XP segment.", true))
     Header(layout, "Positioning")
     local variable = "LH_ExpBar_locked"
     variables[#variables + 1] = variable

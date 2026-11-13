@@ -8,6 +8,7 @@
 
 <ul>
   <li>Shows your current experience and rested XP in a minimal bar.</li>
+  <li>Optionally shows the XP from completed quests awaiting turn-in as a light-green segment with a configurable color.</li>
   <li>Displays experience details in a tooltip when the bar is locked.</li>
   <li>Can be moved and resized; an unlocked preview remains available at maximum level.</li>
 </ul>
@@ -16,9 +17,13 @@
 
 <p>Open <strong>Options → AddOns → LH Tweaks → LH ExpBar</strong>. Unlock the bar, drag it where you want it and resize it with the small handle below its right edge. You can also set width and height with sliders or restore the default layout.</p>
 
+<h2 style="color: #c78be6;">Completed quest XP</h2>
+
+<p>In the same settings page, enable <strong>Show completed quest XP</strong> to preview the XP from completed quests that are still in your quest log. The preview is off by default. It starts after your current XP and stops at the end of the current level; the tooltip shows the full pending XP total. The segment is light green by default. Use <strong>Completed quest XP color</strong> or <strong>Choose color</strong> to change it. The preview updates when your quest log changes.</p>
+
 <h2 style="color: #c78be6;">Settings profiles</h2>
 
-<p>Choose a character under <strong>Use settings from</strong> to share the bar position, width, height and lock state. Configure the source character and log out before selecting it elsewhere. LH Tweaks can apply its source to all LH addons. <strong>This character</strong> restores your own settings; experience values always come from the current character.</p>
+<p>Choose a character under <strong>Use settings from</strong> to share the bar position, width, height, lock state and completed-quest XP display settings. Configure the source character and log out before selecting it elsewhere. LH Tweaks can apply its source to all LH addons. <strong>This character</strong> restores your own settings; experience values always come from the current character.</p>
 
 <h2 style="color: #73c9c4;">More LH addons</h2>
 
@@ -48,6 +53,12 @@
 <p><strong>LH Tweaks is required</strong> and must be installed alongside LH ExpBar. I built this for my own UI, but I'd be glad if it works for yours. Please leave feedback, problems or ideas in the CurseForge comments.</p>
 
 <h2 style="color: #73c9c4;">Changelog</h2>
+
+<p><strong>1.3.0 - Completed quest XP</strong></p>
+
+<ul>
+  <li>Added an optional, configurable-color preview of XP from completed quests still in the quest log.</li>
+</ul>
 
 <p><strong>1.2.0 - Forever and Retail</strong></p>
 

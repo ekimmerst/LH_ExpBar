@@ -181,8 +181,9 @@ local function UpdateExperience()
     quest:SetValue(math.min(current + questXP, maximum))
     quest:SetShown(questXP > 0 and current < maximum)
     local text = string.format("%.0f%%", current / maximum * 100)
-    if bonus > 0 then
-        text = text .. string.format(" |cff9edfff(+ %.0f%%)|r", bonus / maximum * 100)
+    local bonusPercent = math.floor(bonus / maximum * 100 + 0.5)
+    if bonusPercent > 0 then
+        text = text .. string.format(" |cff9edfff(+ %d%%)|r", bonusPercent)
     end
     label:SetText(text)
     bar:Show()
